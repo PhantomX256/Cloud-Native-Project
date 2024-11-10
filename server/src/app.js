@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/authRoutes.js"
+import userDataRoutes from "./routes/userDataRoutes.js";
 
 import checkApiKey from "./middleware/checkApiKey.js";
 import authMiddleware from "./middleware/authMiddleware.js";
@@ -21,5 +22,6 @@ app.use("/api", checkApiKey);
 app.use("/api/app", authMiddleware);
 
 app.use("/api/auth", authRoutes);
+app.use("/api/app/userData", userDataRoutes);
 
 export default app;

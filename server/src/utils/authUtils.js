@@ -12,6 +12,8 @@ export const loginUser = async (email, password) => {
     throw new Error("User not found");
   }
 
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   const match = password === user.password;
   if (!match) {
     throw new Error("Invalid password");

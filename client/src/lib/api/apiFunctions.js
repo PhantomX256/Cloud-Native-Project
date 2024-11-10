@@ -62,3 +62,24 @@ export const logoutUser = () => {
     console.log(err);
   }
 };
+
+export const getUserData = async () => {
+  try {
+    const userDataResponse = await axios.get(
+      `http://localhost:5000/api/app/userData/get`,
+      apiHeaders
+    );
+
+    return userDataResponse.data;
+  } catch (error) {
+    if (error.response) {
+      // If the error has a response, throw the error message from the response
+      throw new Error(error.response?.data?.message);
+    } else {
+      // If the error does not have a response, throw a generic error message
+      throw new Error(
+        "An error occurred while logging in. Please try again later."
+      );
+    }
+  }
+};

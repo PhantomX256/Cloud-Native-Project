@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getUser, loginUser, logoutUser } from "../api/apiFunctions";
+import { getUser, getUserData, loginUser, logoutUser } from "../api/apiFunctions";
 
 export const useGetUser = () => {
   return useQuery({
@@ -23,6 +23,16 @@ export const useLogoutUser = () => {
     // Function to log out the user
     mutationFn: logoutUser,
     // On successful logout, invalidate the "user" query
-    onSuccess: () => queryClient.invalidateQueries(["user"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["user"]);
+      queryClient.invalidateQueries(["userData"]);
+    },
+  });
+};
+
+export const useGetUserData = () => {
+  return useQuery({
+    queryKey: ["userData"],
+    queryFn: getUserData,
   });
 };

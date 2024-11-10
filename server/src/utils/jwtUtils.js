@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { jwtSecret } from "./constants.js";
 
 export const generateToken = (userId) => {
-  return jwt.sign({ userId }, jwtSecret, { expiresIn: "7 days" });
+  return jwt.sign({ userId }, jwtSecret, { expiresIn: "1 day" });
 };
 
 export const verifyToken = (token) => {
